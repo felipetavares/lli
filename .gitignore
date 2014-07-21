@@ -1,0 +1,9 @@
+# Vim files
+
+*.vim
+*.swp
+*~
+
+# Code::Blocks
+~.cbp
+~.cbTemp
