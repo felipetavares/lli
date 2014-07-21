@@ -18,7 +18,9 @@ namespace lips {
 	};
 
 	class Value {
-		enum Type {NUMBER, LIST, NIL};
+	public:
+		enum Type {NUMBER, LIST, FUNCTION, NIL};
+	private:
 		Type mType;
 
 		double mNumber;
@@ -28,6 +30,7 @@ namespace lips {
 		Value ();
 		Value (double);
 		Value (List*);
+		Value (Function*);
 
 		Type getType();
 
@@ -35,6 +38,7 @@ namespace lips {
 		List* getList();
 		Function* getFunction();
 
+		void set (Value*);
 		void set (double);
 		void set (List*);
 		void set (Function*);

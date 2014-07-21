@@ -1,25 +1,37 @@
 #include "list/list.h"
+#include "lips.h"
 #include <iostream>
 using namespace std;
 using namespace lips;
 
 int main () {
+	Lips lips;	
+
 	List *l = new List();
 	List *m = new List();
 	List *n = new List();
 
-	l->car()->set(10.5);
-	m->car()->set(18.9);
+	List *p = new List();
+	List *q = new List();
+	List *r = new List();
+
+	p->car()->set (new fAdd());
+	q->car()->set (4);
+	r->car()->set (3);
+
+	l->car()->set(new fAdd());
+	m->car()->set(p);
 	n->car()->set(0.3);
 
 	l->append (m);
 	m->append (n);
 
-	l->print();
-	m->print();
-	n->print();
+	p->append (q);
+	q->append (r);
 
-	l->cdr()->print();
+	l->print();
+
+	lips.eval(l)->print();
 
 	return 0;
 }

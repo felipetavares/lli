@@ -5,5 +5,10 @@
 *~
 
 # Code::Blocks
-~.cbp
-~.cbTemp
+*.cbp
+*.cbTemp
+*.depend
+*.layout
+
+# Compiled files
+*.o

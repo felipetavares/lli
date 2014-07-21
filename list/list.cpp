@@ -14,6 +14,17 @@ Value::Value (List *list) {
 	set (list);
 }
 
+Value::Value (Function* function) {
+	set (function);
+}
+
+void Value::set (Value *v) {
+	mType = v->mType;
+	mNumber = v->mNumber;
+	mList = v->mList;
+	mFunction = v->mFunction;
+}
+
 void Value::set (double number) {
 	mType = NUMBER;
 	mNumber = number;
@@ -27,6 +38,11 @@ void Value::set (List* list) {
 		mType = LIST;
 		mList = list;
 	}
+}
+
+void Value::set (Function* function) {
+	mType = FUNCTION;
+	mFunction = function;
 }
 
 List* Value::getList () {
@@ -43,6 +59,14 @@ double Value::getNumber () {
 	return 0;
 }
 
+Function* Value::getFunction () {
+	if (mType == FUNCTION) {
+		return mFunction;
+	}
+	return nil;
+}
+
+
 Value::Type Value::getType () {
 	return mType;
 }
@@ -53,6 +77,9 @@ std::string Value::str () {
 	switch (mType) {
 		case NUMBER:
 			ss << getNumber();
+		break;
+		case FUNCTION:
+			ss << "<fn>";
 		break;
 		case LIST:
 			ss << "[]";
@@ -118,7 +145,11 @@ List* fAdd::call (List *args) {
 	List *i = args;
 	double result = 0;
 	while (i != nil) {
-		result += i->car()->getNumber();
+		if (i->car()->getType() == Value::NUMBER)
+			result += i->car()->getNumber();
+		if (i->car()->getType() == Value::LIST)
+			result += i->car()->getList()->car()->getNumber();
+
 		i = i->cdr();
 	}
 	ret->car()->set(result);
