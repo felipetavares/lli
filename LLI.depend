@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1405777852 source:c:\users\rachel\desktop\development\lli\list\list.cpp
+	"list.h"
+	<sstream>
+
+1405777924 c:\users\rachel\desktop\development\lli\list\list.h
+	<iostream>
+
+1405777771 source:c:\users\rachel\desktop\development\lli\main.cpp
+	"list/list.h"
+	<iostream>
+
